@@ -39,6 +39,17 @@ const renderTodos = function (todos, filters) {
         document.querySelector('#todos').appendChild(generateTodoDOM(todo))
     })
 }
+//Remove a todo from the list
+const removeNote = function(id){
+const todoindex = todos.findIndex(function (todo){
+    return todo.id === id
+})
+if (todoindex > -1){
+    todos.splice(todoindex,1)
+
+}
+}
+
 //Get the DOM element for a individual note
 const generateTodoDOM = function (todo){
     const TodoEl = document.createElement('div')
@@ -55,11 +66,18 @@ const generateTodoDOM = function (todo){
 
     Removebutton.textContent= 'X'
     TodoEl.appendChild(Removebutton)
+    //remove item
+    Removebutton.addEventListener('click',function (){
+    removeNote(todo.id)
+    savetodos(todos)
+    renderTodos(todos, filters)
+
     
     
+    
+    })
     return TodoEl
 }
-
 
 
 //Get the DOM elements to list summary
