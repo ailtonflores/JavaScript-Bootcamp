@@ -41,14 +41,30 @@ const renderTodos = function (todos, filters) {
 }
 //Get the DOM element for a individual note
 const generateTodoDOM = function (todo){
-    const p = document.createElement('p')
-    p.textContent = todo.text
-    return p
+    const TodoEl = document.createElement('div')
+    const checkbox = document.createElement('input')
+    const todoText = document.createElement('span')
+    const Removebutton= document.createElement('button')
 
+    checkbox.setAttribute('type','checkbox')
+    TodoEl.appendChild(checkbox)
+    
+    //setup the remove todo button
+    todoText.textContent = todo.text
+    TodoEl.appendChild(todoText)
+
+    Removebutton.textContent= 'X'
+    TodoEl.appendChild(Removebutton)
+    
+    
+    return TodoEl
 }
+
+
 
 //Get the DOM elements to list summary
 const generateSummaryDOM= function(incompleteTodos){
+    
     const summary = document.createElement('h2')
     summary.textContent = `You have ${incompleteTodos.length} todos left`
 return summary
