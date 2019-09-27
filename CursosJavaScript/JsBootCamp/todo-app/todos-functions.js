@@ -49,6 +49,16 @@ if (todoindex > -1){
 
 }
 }
+// Toggle the completed value for a given todo
+const toggleTodo = function(id){
+    const todo = todos.find( function (todo){
+    return todo.id ===id
+} )
+    if (todo !== undefined){
+        todo.completed = !todo.completed
+    }
+
+}
 
 //Get the DOM element for a individual note
 const generateTodoDOM = function (todo){
@@ -58,7 +68,13 @@ const generateTodoDOM = function (todo){
     const Removebutton= document.createElement('button')
 
     checkbox.setAttribute('type','checkbox')
+    checkbox.checked = todo.completed
     TodoEl.appendChild(checkbox)
+    checkbox.addEventListener('change', function (){
+        toggleTodo(todo.id)
+        savetodos(todos)
+        renderTodos(todos,filters)
+    })
     
     //setup the remove todo button
     todoText.textContent = todo.text
@@ -70,10 +86,7 @@ const generateTodoDOM = function (todo){
     Removebutton.addEventListener('click',function (){
     removeNote(todo.id)
     savetodos(todos)
-    renderTodos(todos, filters)
-
-    
-    
+    renderTodos(todos, filters)     
     
     })
     return TodoEl
