@@ -1,4 +1,5 @@
 // Read existing notes from localStorage
+// Read existing notes from localStorage
 const getSavedNotes = function () {
     const notesJSON = localStorage.getItem('notes')
 
@@ -48,7 +49,6 @@ const generateNoteDOM = function (note) {
     }
     textEl.setAttribute('href', `/edit.html#${note.id}`)
     noteEl.appendChild(textEl)
-    
 
     return noteEl
 }
